@@ -24,11 +24,9 @@ Essa arquitetura promove desacoplamento entre os componentes, maior escalabilida
 
 ## 🏗️ Arquitetura
 
-> *Adicionar aqui a imagem da arquitetura construída durante o laboratório.*
+> <img width="824" height="465" alt="image" src="https://github.com/user-attachments/assets/25c35d02-cad6-4210-9eea-d0ee4c67d5ff" />
 
-<p align="center">
-<img src="./imagens/arquitetura.png" width="900">
-</p>
+
 
 ### Fluxo da aplicação
 
@@ -93,7 +91,8 @@ Foram criadas duas IAM Roles responsáveis pelas permissões das funções Lambd
 
 Posteriormente foram adicionadas permissões específicas para acesso ao Amazon SQS e ao Amazon EventBridge através de políticas inline.
 
-> 📷 *Inserir print das Roles criadas.*
+> <img width="1296" height="306" alt="image" src="https://github.com/user-attachments/assets/12a38544-633a-4fdd-ac24-ae9235c40e7a" />
+
 
 ---
 
@@ -104,10 +103,11 @@ Foi criada uma fila FIFO responsável por armazenar mensagens que não puderem s
 **Nome da fila**
 
 ```
-pedidos-fifo-dlq.fifo
+pedidos-fifo-dlq-LorenaFernandes.fifo
 ```
 
-> 📷 *Inserir print da DLQ.*
+> <img width="1306" height="264" alt="image" src="https://github.com/user-attachments/assets/0a61b97c-003a-4c1c-836d-6560e35a9368" />
+
 
 ---
 
@@ -120,10 +120,11 @@ Também foi associada à Dead Letter Queue para tratamento automático de falhas
 **Nome da fila**
 
 ```
-pedidos-fifo-queue.fifo
+pedidos-fifo-queue-LorenaFernandes.fifo
 ```
 
-> 📷 *Inserir print da fila principal.*
+> <img width="1306" height="332" alt="image" src="https://github.com/user-attachments/assets/d61c469a-84b5-4ddf-92a6-04015f5ea2e1" />
+
 
 ---
 
@@ -135,7 +136,15 @@ Após a criação da fila SQS foram adicionadas políticas permitindo:
 - Leitura e remoção de mensagens da fila (Lambda de Validação);
 - Publicação de eventos no Amazon EventBridge.
 
-> 📷 *Inserir print das políticas.*
+> 📷 Política da Lambda de Pré-Validação
+
+<img width="1290" height="401" alt="image" src="https://github.com/user-attachments/assets/aa8084ad-2804-48bc-b6ec-66254d6abd2c" />
+
+
+📷 Política da Lambda de Validação
+
+<img width="1298" height="361" alt="image" src="https://github.com/user-attachments/assets/416772cf-6cc5-4c46-938b-d6c35dadf316" />
+
 
 ---
 
@@ -156,7 +165,8 @@ A URL da fila foi configurada utilizando variável de ambiente.
 SQS_QUEUE_URL = os.environ["SQS_QUEUE_URL"]
 ```
 
-> 📷 *Inserir print da Lambda.*
+> <img width="1293" height="521" alt="image" src="https://github.com/user-attachments/assets/a2974d0a-59b8-4c43-95e9-624d024be25d" />
+
 
 ---
 
@@ -182,7 +192,8 @@ Após a configuração foi realizado o deploy para o estágio:
 dev
 ```
 
-> 📷 *Inserir print do API Gateway.*
+> <img width="1297" height="533" alt="image" src="https://github.com/user-attachments/assets/1ec9e6d5-ef59-4db6-9f79-b800931ae6d7" />
+
 
 ---
 
@@ -216,7 +227,8 @@ curl -X POST <INVOKE_URL>/pedidos \
 }
 ```
 
-> 📷 *Inserir print do teste.*
+> <img width="1090" height="385" alt="image" src="https://github.com/user-attachments/assets/58c7aacb-9cdc-43c6-8136-5ea4e709bb9f" />
+
 
 ---
 
@@ -228,7 +240,8 @@ Foi criado um barramento customizado utilizando Amazon EventBridge para publica�
 pedidos-event-bus
 ```
 
-> 📷 *Inserir print do EventBridge.*
+> <img width="1288" height="324" alt="image" src="https://github.com/user-attachments/assets/e1c9b9ae-38b4-4dfd-b731-8ce37c1d18bf" />
+
 
 ---
 
@@ -249,7 +262,8 @@ O nome do Event Bus foi configurado através de variável de ambiente.
 EVENT_BUS_NAME = os.environ["EVENT_BUS_NAME"]
 ```
 
-> 📷 *Inserir print da Lambda.*
+> <img width="1292" height="546" alt="image" src="https://github.com/user-attachments/assets/03d2f55d-8d6b-4dcb-a950-54d87f3c68e4" />
+
 
 ---
 
@@ -263,7 +277,8 @@ Configuração utilizada:
 
 Essa configuração garante que cada mensagem seja processada individualmente, preservando o comportamento FIFO.
 
-> 📷 *Inserir print do Trigger.*
+> <img width="828" height="417" alt="image" src="https://github.com/user-attachments/assets/18d6f41b-3f00-472e-beae-e46b7ae8375d" />
+
 
 ---
 
@@ -280,7 +295,8 @@ Durante o teste foi possível verificar:
 - Publicação do evento no Amazon EventBridge;
 - Logs disponíveis no Amazon CloudWatch.
 
-> 📷 *Inserir prints dos logs do CloudWatch.*
+> <img width="1292" height="477" alt="image" src="https://github.com/user-attachments/assets/8e3e4240-c71a-4a23-8e22-d98446152dd3" />
+
 
 ---
 
